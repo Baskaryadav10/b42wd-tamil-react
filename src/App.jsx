@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 
 // Logic + View = Component
@@ -24,15 +25,31 @@ export default function App() {
   ];
   return (
     <div className="App">
-      {users.map((usr) => (
+      {/*{users.map((usr) => (
         <Msg name={usr.name} pic={usr.pic} />
-      ))}
+      ))}  */}
       {/* Array of Strings —→ Array of JSX */}
       {/*{name.map((nm) => (
         <Welcome name={nm} /> 
       ))}*/}
+
+      {/*<Counter /> */}
     </div>
     );
+}
+
+function Counter(){
+  //let like = 10;
+  const [like, setLike] = useState(0)
+  const [dislike, setDislike] = useState(0)
+  return(
+    <div>
+      {/* onClick → camel case */}
+      <button onClick={() => setLike(like + 1)}>👍{like}</button>
+      {/*<button onClick={() => setLike(like + 1)}>👎{like}</button> */}
+      <button onClick={() => setDislike(dislike + 1)}>👎{dislike}</button>
+    </div>
+  )
 }
 
 function Welcome({name}) {
@@ -64,6 +81,7 @@ function Msg({pic,name}) {
       <h1>
         Hello, <span className="user-name">{name}</span>🎊🎊😍🎉🐯
       </h1>
+      <Counter />
     </div> 
     // JSX Ends here
   );
