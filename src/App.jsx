@@ -27,31 +27,10 @@ export default function App() {
       {users.map((usr) => (
         <Msg name={usr.name} pic={usr.pic} />
       ))}
-      {/*<Msg 
-      name="Ramya" 
-      pic="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg?fit=640,427"
-      />
-      <Msg 
-      name="Ash" 
-      pic="https://img.freepik.com/free-photo/half-profile-image-handsome-young-caucasian-man-with-good-skin-brown-eyes-black-stylish-hair-stubble-posing-isolated-against-blank-wall-looking-front-him-smiling_343059-4560.jpg?w=2000"
-      />
-      <Msg 
-      name="Logan" 
-      pic="https://www.thesun.co.uk/wp-content/uploads/2022/05/4336AA26-D141-11EC-8F12-0A7D8980E56F.jpeg"
-      />*/}
-
-      {/*<Welcome name="Vijay" />
-      <Welcome name="Ajith" />
-      <Welcome name="Surya" /> */}
-
       {/* Array of Strings —→ Array of JSX */}
       {/*{name.map((nm) => (
         <Welcome name={nm} /> 
       ))}*/}
-
-      {/*{name.map((nm) => {}
-      <Welcome name={nm} /> 
-      })} */}
     </div>
     );
 }
