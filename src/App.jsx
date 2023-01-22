@@ -62,7 +62,7 @@ function Msg({pic,name}) {
     <div>
       <img className="user-pic" src={pic} alt={name} />
       <h1>
-        Hello, <span className="user-name">{name}</span>🎊🎊😍🎉
+        Hello, <span className="user-name">{name}</span>🎊🎊😍🎉🐯
       </h1>
     </div> 
     // JSX Ends here
