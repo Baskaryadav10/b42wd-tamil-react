@@ -114,7 +114,7 @@ function MovieList(){
     <div className="movie-list">
       {movieList.map((mv, index) => (
         <Movie key={index} movie= {mv} />
-      ))}
+      ))} 
     </div>
   )
 }
@@ -123,7 +123,7 @@ function Movie({movie}){
   // Conditional styling | ? : → ternary operator
   const styles = {
     color : movie.rating > 8.5 ? "green" : "crimson",
-    // backgroundColor : "orange" , // CamelCase
+     backgroundColor : "orange" , // CamelCase
   };
   
   // Manage state | Independent | Accelerator
