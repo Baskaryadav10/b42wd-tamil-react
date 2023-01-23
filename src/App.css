@@ -1,16 +1,61 @@
 .App {
   font-family: sans-serif;
-  text-align: center;
+  /*text-align: center; */
   /*color:blue; */
 }
 
-.user-name{
+.user-name {
   color: crimson;
+  font-style: italic;
 }
 
-.user-pic{
+.user-pic {
   height: 250px;
   width: 250px;
   object-fit: cover;
   border-radius: 50%;
+}
+
+.movie-container {
+  /*background: orange; */
+  /*width: 340px; */
+}
+
+.movie-poster {
+  height: 640px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.movie-specs {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+
+.movie-name {
+  font-size: 24px;
+  margin: 0;
+}
+
+.movie-rating {
+  font-size: 20px;
+}
+
+.movie-summary {
+  margin-top: 0;
+}
+
+.movie-list {
+  /*display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: space-around; */
+  /* Ratio | fr  : fractional unit */
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  /* grid-template-columns: repeat(4, 1fr); */
+  /* RAM */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 16px;
 }
