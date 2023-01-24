@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { Counter } from "./Counter";
+import Button from '@mui/material/Button';
 
 // Logic + View = Component
 // Component declaration
@@ -35,13 +36,49 @@ export default function App() {
       ))}*/}
 
       {/*<Counter /> */}
-      <MovieList />
+      <MovieList /> 
+      {/*<AddColor /> */}
     </div>
-    );
+  );
+}
+
+function AddColor(){
+  const [color, setColor] = useState("pink")
+  const styles = {
+    background: color,
+  };
+
+  const [colorList, setColorList] = useState(['crimson','orange','purple']);
+  return (
+    <div>
+      <input 
+      style={styles}
+      type="text" 
+      onChange={(event) => setColor(event.target.value)}
+      value={color}
+      />
+      {/* Copy existing 'colorList' & add new color to it */}
+      <button onClick={() => setColorList([...colorList, color])}>Add Color</button>
+      {colorList.map((clr) => (
+          <ColorBox color={clr}/>
+      ))}
+
+    </div>
+  )
+}
+
+function ColorBox({color}){
+  const styles = {
+    height: '25px',
+    width: '250px',
+    margin: '5px  0px',
+    background:color,
+  };
+  return <div style={styles}></div>
 }
 
 function MovieList(){
-  const movieList = [
+  const [movieList, setMovieLst]= useState([
     {
       "name": "Vikram",
       "poster": "https://m.media-amazon.com/images/M/MV5BMmJhYTYxMGEtNjQ5NS00MWZiLWEwN2ItYjJmMWE2YTU1YWYxXkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_.jpg",
@@ -108,19 +145,81 @@ function MovieList(){
       "summary": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA\\n pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team\\n of researchers, to find a new planet for humans.",
       "rating": 8.8
     }
-  ];
+  ]);
   
+  const [name, setName] = useState("");
+  const [poster, setPoster] = useState("");
+  const [rating, setRating] = useState("");
+  const [summary, setSummary] = useState("");
+
   return (
-    <div className="movie-list">
-      {movieList.map((mv, index) => (
-        <Movie key={index} movie= {mv} />
-      ))} 
+    <div>
+      <div className="add-movie-form">
+        <input 
+        onChange={(event) => setName(event.target.value)} 
+        type="text" 
+        placeholder="Name" 
+        />
+        <input 
+        onChange={(event) => setPoster(event.target.value)} 
+        type="text" 
+        placeholder="Poster" 
+        />
+        <input 
+        onChange={(event) => setRating(event.target.value)} 
+        type="text" 
+        placeholder="Rating" 
+        />
+        <input 
+        onChange={(event) => setSummary(event.target.value)} 
+        type="text" 
+        placeholder="Summary" 
+        />
+        {/* Copy existing 'MovieList' & add newMovie to it */}
+        {/*<button
+        onClick={() => {
+          const newMovie = {
+            name : name,
+            poster : poster,
+            summary : summary,
+            rating : rating,
+          };
+
+          setMovieLst([...movieList,newMovie])
+          console.log (newMovie);
+        }}
+        >
+          Add Movie
+      </button> */}
+        <Button 
+        onClick={() => {
+          const newMovie = {
+            name : name,
+            poster : poster,
+            summary : summary,
+            rating : rating,
+          };
+
+          setMovieLst([...movieList,newMovie])
+          console.log (newMovie);
+        }}variant="contained">
+          Add Movie
+        </Button>
+        {/*<p> 
+          {name} - {poster} - {rating} - {summary}
+        </p> */}
+      </div>
+      <div className="movie-list">
+        {movieList.map((mv, index) => (
+          <Movie key={index} movie= {mv} />
+        ))} 
+      </div>
     </div>
   )
 }
 
 function Movie({movie}){
-  // Conditional styling | ? : → ternary operator
+  // Conditional Styling | ? : → ternary operator
   const styles = {
     color : movie.rating > 8.5 ? "green" : "crimson",
      backgroundColor : "orange" , // CamelCase
@@ -130,9 +229,9 @@ function Movie({movie}){
   const [show , setShow] = useState(true)
 
   // Derived state | dependent | Speedometer
-  const summaryStyles ={
-    display : show ? "block" : "none" ,
-  }
+  //const summaryStyles ={
+    //display : show ? "block" : "none" ,
+  //}
   //const movie = {
     //"name": "Vikram",
     //"poster": "https://m.media-amazon.com/images/M/MV5BMmJhYTYxMGEtNjQ5NS00MWZiLWEwN2ItYjJmMWE2YTU1YWYxXkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_.jpg",
@@ -152,9 +251,16 @@ function Movie({movie}){
     <button onClick={() => setShow(!show)}>
       Toggle summary - {"" + show}
     </button>
-    <p style={summaryStyles} className="movie-summary">
-      {movie.summary}
-    </p>
+
+    {/* Conditional Styling */}
+    {/*<p style={summaryStyles} className="movie-summary">
+      {movie.summary} 
+    </p> */}
+
+    {/* Conditional Rendering - Removed from DOM */}
+    {show ?<p className="movie-summary">{movie.summary}</p> : null}
+
+    {/*<p className={show ? 'green' : 'red'}>{movie.summary}</p> */}
     <Counter />
   </div>)
 }
@@ -229,3 +335,19 @@ function Msg({pic,name}) {
     // JSX Ends here
   //);
 //}
+
+// Immutability
+
+var x = 5; // Mutable
+
+// 1000 lines of codes
+
+console.log(x)
+
+const y = 5;// Immutable
+
+// 1000 lines of codes
+// y = y+10
+const z = y+10 ;
+
+console.log(y)
