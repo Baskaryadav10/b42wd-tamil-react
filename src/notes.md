@@ -57,3 +57,16 @@ Y - Yourself
 - Comparison - _Reconciliation_ - VDOM & Real Dom
 - Key helps is _quickly_ compare the _changes_
 - Don't use `document.*` in React - Loses performance
+
+### Agenda
+- Materialized
+- Imports & Exports
+
+### Imports & Exports
+1. Types
+    1. named - imports & exports - prefered
+      1. Multiple exxports
+    2. default - imports & exports 
+      1. Only one default export per file
+2. Always put export at end of the file - good practice
+3. ctrl + click - for easy navigation.        
