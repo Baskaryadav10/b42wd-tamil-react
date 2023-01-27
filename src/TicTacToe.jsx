@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
+import Button from '@mui/material/Button';
 
 export function TicTacToe() {
   const { width, height } = useWindowSize();
@@ -50,6 +51,11 @@ export function TicTacToe() {
 
   const winner = decideWinner(board);
 
+  const restartGame = () => {
+     setBoard([null,null,null,null,null,null,null,null,null]);
+     setIsXTurn(true);
+  };
+
   return (
     <div className="tic-tac-toe">
       {winner ? <Confetti width={width} height={height} gravity={0.02}/> : null}
@@ -59,7 +65,8 @@ export function TicTacToe() {
           (<GameBox val={val} onPlayerClick={() => handClick(index)}/>
         ))};
       </div>
-      <h1>The winner is: {winner} </h1>
+      <Button onClick={restartGame} variant="contained">Restart</Button>
+      {winner ? <h1>The winner is: {winner} </h1> : null}
     </div>
   );
 }
