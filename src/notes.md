@@ -1,9 +1,9 @@
 JSX - JavaScript XML
 JSX - JS (webpack + babel)
  
-`class`, `for` - Reserved keyword
+`class`, `for` - Reserved keyword is required for JavaScript.
  
-1. `className`
+1. `className` is used to convert  JSX into JavaScript.
 1. `htmlFor`
  
 ## `function` to be considered as components
@@ -70,3 +70,18 @@ Y - Yourself
       1. Only one default export per file
 2. Always put export at end of the file - good practice
 3. ctrl + click - for easy navigation.        
+
+
+### Tic Tac Toe
+- Alternate | X -> O -> X | - ✅
+- Board tracking - ✅
+- Winning condition
+  - When player play check in winning condition appears on the board - ✅
+  - Announce winner - ✅
+  - Stop the game
+- Task
+  - Restart
+  - Player turn
+  - X or O start
+  - Draw condition
+  - Style
