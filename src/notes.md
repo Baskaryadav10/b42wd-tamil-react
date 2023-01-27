@@ -85,3 +85,10 @@ Y - Yourself
   - X or O start
   - Draw condition
   - Style
+
+>> Parentfn should be called from child → pass Parentfn as prop
+
+
+## Routing
+- `Link` changes url without refresh
+- `Route` matches `path` (url) → `Component`

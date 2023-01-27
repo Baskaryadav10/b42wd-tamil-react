@@ -5,6 +5,7 @@ import { AddColor } from "./AddColor";
 import { MovieList } from "./MovieList";
 import { Msg } from "./Msg";
 import { TicTacToe } from "./TicTacToe";
+import { Routes, Route, Link } from "react-router-dom";
 
 console.log(double(10));
 // Logic + View = Component
@@ -32,6 +33,26 @@ function App() {
   ];
   return (
     <div className="App">
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/tic-tac-toe">Tic Tac Toe Game</Link>
+          </li>
+          <li>
+            <Link to="/movies">Movies</Link>
+          </li>
+          <li>
+            <Link to="/color-game">Color Game</Link>
+          </li>
+        </ul>  
+      </nav>
+
+
+
+
       {/*users.map((usr) => (
         <Msg name={usr.name} pic={usr.pic} />
       ))*/}  
@@ -43,10 +64,38 @@ function App() {
       {/*<Counter /> */}
       {/*<MovieList /> */}
       {/*<AddColor /> */}
-      {<TicTacToe />}
+      {/*<TicTacToe /> */}
+
+      {/* Task */ }
+      {/* /movies → <MovieList />*/}
+      {/* /color-game →*/ }
+
+      {<Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/tic-tac-toe" element={<TicTacToe />} />
+        <Route path="/movies" element={<MovieList />} />
+        <Route path="/color-game" element={<AddColor />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>}
 
     </div>
   );
+}
+
+function NotFound(){
+  return (
+    <div>
+      <h1>404 not found</h1>
+    </div>
+  )
+}
+
+function Home(){
+  return (
+    <div>
+      <h1>Welcome to the movie app 🎊🎊✨🚀</h1>
+    </div>
+  )
 }
 
 
