@@ -9,8 +9,10 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import InfoIcon from '@mui/icons-material/Info';
+import { useNavigate } from "react-router-dom";
 
-export function Movie({ movie }) {
+export function Movie({ movie,id }) {
   // Conditional Styling | ? : → ternary operator
   const styles = {
     color: movie.rating > 8.5 ? "green" : "crimson",
@@ -30,6 +32,9 @@ export function Movie({ movie }) {
   //"rating": 8.4,
   //"summary": "Members of a black ops team must track and eliminate a gang of masked murderers."
   //};
+
+const navigate = useNavigate();
+
   return (
     <Card className="movie-container">
       <img className="movie-poster" src={movie.poster} alt={movie.name} />
@@ -43,6 +48,14 @@ export function Movie({ movie }) {
               aria-label="Toggle summary"
             >
               {show ? <ExpandLessIcon/> : <ExpandMoreIcon/>}
+            </IconButton>
+            <IconButton
+              color="primary"
+              // /movies/index
+              onClick={() => navigate(`/movies/${id}`)}
+              aria-label="Movie details"
+            >
+              <InfoIcon />
             </IconButton>
           </h2>
           <p style={styles} className="movie-rating">

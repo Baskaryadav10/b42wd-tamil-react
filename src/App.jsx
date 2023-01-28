@@ -6,6 +6,8 @@ import { MovieList } from "./MovieList";
 import { Msg } from "./Msg";
 import { TicTacToe } from "./TicTacToe";
 import { Routes, Route, Link } from "react-router-dom";
+import { NotFound } from "./NotFound";
+import { Home } from "./Home";
 
 console.log(double(10));
 // Logic + View = Component
@@ -50,9 +52,6 @@ function App() {
         </ul>  
       </nav>
 
-
-
-
       {/*users.map((usr) => (
         <Msg name={usr.name} pic={usr.pic} />
       ))*/}  
@@ -81,24 +80,6 @@ function App() {
     </div>
   );
 }
-
-function NotFound(){
-  return (
-    <div>
-      <h1>404 not found</h1>
-    </div>
-  )
-}
-
-function Home(){
-  return (
-    <div>
-      <h1>Welcome to the movie app 🎊🎊✨🚀</h1>
-    </div>
-  )
-}
-
-
 
 export default App;  // default export
 
