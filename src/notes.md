@@ -92,3 +92,8 @@ Y - Yourself
 ## Routing
 - `Link` changes url without refresh
 - `Route` matches `path` (url) → `Component`
+
+## Lifting the state up
+- Lifting the state from child to parent
+- Moving the declared state from child to parent
+- Usage: Sharing data between sibling components

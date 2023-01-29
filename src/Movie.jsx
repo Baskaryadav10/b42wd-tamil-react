@@ -16,7 +16,7 @@ export function Movie({ movie,id }) {
   // Conditional Styling | ? : → ternary operator
   const styles = {
     color: movie.rating > 8.5 ? "green" : "crimson",
-    backgroundColor: "orange", // CamelCase
+    //backgroundColor: "orange", // CamelCase
   };
 
   // Manage state | Independent | Accelerator
