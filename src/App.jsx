@@ -10,6 +10,19 @@ import { NotFound } from "./NotFound";
 import { Home } from "./Home";
 import { useState } from "react";
 import Button from '@mui/material/Button';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { AddMovie } from "./AddMovie";
+
 
 const INITIAL_MOVIE_LIST = [
   {
@@ -130,27 +143,51 @@ function App() {
 
   
 
-  const [movieList, setMovieList] = useState(INITIAL_MOVIE_LIST);
+  
 
+  const navigate = useNavigate();
+
+  const [mode, setMode] = useState("dark");
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
+
+  const bgStyles = {
+    borderRadius: "0px",
+    minHeight: "100vh",
+  };
+
+  const [movieList, setMovieList] = useState(INITIAL_MOVIE_LIST);
+  
+  fetch("https://63d7b5665dbd7232442b44da.mockapi.io/movies")
+    .then(data => data.json())
+    .then((mvs) => console.log(mvs))
 
   return (
-    <div className="App">
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/tic-tac-toe">Tic Tac Toe Game</Link>
-          </li>
-          <li>
-            <Link to="/movies">Movies</Link>
-          </li>
-          <li>
-            <Link to="/color-game">Color Game</Link>
-          </li>
-        </ul>  
-      </nav>
+    <ThemeProvider theme={darkTheme}>
+      <Paper sx={bgStyles} elevation={4}>
+         <div className="App">
+      <AppBar position="static">
+        <Toolbar>
+          <Button onClick={() => navigate("/")} color="inherit">Home</Button>
+          <Button onClick={() => navigate("/tic-tac-toe")} color="inherit">Tic Tac Toe</Button>
+          <Button onClick={() => navigate("/movies")} color="inherit">Movies</Button>
+          <Button onClick={() => navigate("/color-game")} color="inherit">Color Game</Button>
+          <Button onClick={() => navigate("/movies/add")} color="inherit">Add Movie</Button>
+          <Button 
+            sx={{ marginLeft : "auto"}}
+            onClick={() => setMode(mode ==="light" ? "dark" : "light")} 
+            color="inherit"
+            startIcon= {
+              mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />
+            }
+          >
+            {mode ==="light" ? "dark" : "light"} Mode</Button>
+        </Toolbar>
+      </AppBar>
+      
 
       {/*users.map((usr) => (
         <Msg name={usr.name} pic={usr.pic} />
@@ -173,14 +210,25 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/tic-tac-toe" element={<TicTacToe />} />
         {/*<Route path="/films" element={<Navigate to replace="/movies" />} />*/}
-        <Route path="/movies" element={<MovieList movieList={movieList} setMovieLst={setMovieList}/>} />
+        <Route 
+          path="/movies" 
+          element={<MovieList movieList={movieList} setMovieLst={setMovieList}/>} 
+        />
         {/* id → dynamic */}
-        <Route path="/movies/:id" element={<MovieDetails movieList={movieList}/>} />
+        <Route 
+          path="/movies/:id" 
+          element={<MovieDetails movieList={movieList}/>} 
+        />
+        <Route 
+          path="/movies/add" 
+          element={<AddMovie movieList={movieList} setMovieLst={setMovieList}/>} />
         <Route path="/color-game" element={<AddColor />} />
         <Route path="*" element={<NotFound />} />
       </Routes>}
 
-    </div>
+         </div>
+      </ Paper>
+    </ThemeProvider>
   );
 }
 
@@ -197,6 +245,10 @@ function MovieDetails({movieList}) {
   };
 
   const navigate = useNavigate();
+
+  
+  
+  
 
   return (
     <div> 
@@ -227,7 +279,13 @@ function MovieDetails({movieList}) {
         {<p className="movie-summary">{movie.summary}</p>}  
       
       {/*<p className={show ? 'green' : 'red'}>{movie.summary}</p> */}
-        <Button variant="contained" onClick={() => navigate(-1)}>Back</Button>
+        <Button 
+          startIcon={<KeyboardBackspaceIcon />} 
+          variant="contained" 
+          onClick={() => navigate(-1)}
+        >
+          Back
+        </Button>
       </div>
     </div>
   );
@@ -237,6 +295,8 @@ function MovieDetails({movieList}) {
     //</div>
   //);
 }
+
+
 
 export default App;  // default export
 
