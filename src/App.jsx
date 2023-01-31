@@ -5,10 +5,10 @@ import { AddColor } from "./AddColor";
 import { MovieList } from "./MovieList";
 import { Msg } from "./Msg";
 import { TicTacToe } from "./TicTacToe";
-import { Routes, Route, Link, useParams, useNavigate, Navigate } from "react-router-dom";
+import { Routes, Route, Link, useNavigate, Navigate } from "react-router-dom";
 import { NotFound } from "./NotFound";
 import { Home } from "./Home";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -16,12 +16,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { AddMovie } from "./AddMovie";
+import { MovieDetails } from "./MovieDetails";
 
 
 const INITIAL_MOVIE_LIST = [
@@ -159,11 +159,10 @@ function App() {
     minHeight: "100vh",
   };
 
-  const [movieList, setMovieList] = useState(INITIAL_MOVIE_LIST);
   
-  fetch("https://63d7b5665dbd7232442b44da.mockapi.io/movies")
-    .then(data => data.json())
-    .then((mvs) => console.log(mvs))
+  const [movieList, setMovieList] = useState([]);
+  
+  
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -210,18 +209,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/tic-tac-toe" element={<TicTacToe />} />
         {/*<Route path="/films" element={<Navigate to replace="/movies" />} />*/}
-        <Route 
-          path="/movies" 
-          element={<MovieList movieList={movieList} setMovieLst={setMovieList}/>} 
-        />
+        <Route path="/movies" element={<MovieList />} />
         {/* id → dynamic */}
-        <Route 
-          path="/movies/:id" 
-          element={<MovieDetails movieList={movieList}/>} 
-        />
+        <Route path="/movies/:id" element={<MovieDetails />} />
         <Route 
           path="/movies/add" 
-          element={<AddMovie movieList={movieList} setMovieLst={setMovieList}/>} />
+          element={<AddMovie movieList={movieList} setMovieLst={setMovieList}/>}
+        />
         <Route path="/color-game" element={<AddColor />} />
         <Route path="*" element={<NotFound />} />
       </Routes>}
@@ -231,71 +225,6 @@ function App() {
     </ThemeProvider>
   );
 }
-
-
-function MovieDetails({movieList}) {
-  const {id} = useParams();
-  //console.log(movieList);
-  const movie = movieList[id];
-  console.log(movie);
-
-  const styles = {
-    color: movie.rating > 8.5 ? "green" : "crimson",
-    //backgroundColor: "orange", // CamelCase
-  };
-
-  const navigate = useNavigate();
-
-  
-  
-  
-
-  return (
-    <div> 
-      <iframe 
-        width="100%" 
-        height="650" 
-        src={movie.trailer}
-        title="Marvel Studios’ Ant-Man and The Wasp: Quantumania | New Trailer" 
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        allowfullscreen
-      ></iframe>
-      <div className="movie-detail-container">
-        <div className="movie-specs">
-          <h2 className="movie-name">
-            {movie.name}
-          </h2>
-          <p style={styles} className="movie-rating">
-            ⭐ {movie.rating}
-          </p>
-        </div>
-
-        {/* Conditional Styling - only style updated */}
-        {/* <p style={summaryStyles} className="movie-summary">
-              {movie.summary} 
-            </p> */}
-
-        {/* Conditional Rendering - Removed from DOM */}  
-        {<p className="movie-summary">{movie.summary}</p>}  
-      
-      {/*<p className={show ? 'green' : 'red'}>{movie.summary}</p> */}
-        <Button 
-          startIcon={<KeyboardBackspaceIcon />} 
-          variant="contained" 
-          onClick={() => navigate(-1)}
-        >
-          Back
-        </Button>
-      </div>
-    </div>
-  );
-
-    //<div>
-      //<h1>Movie Details page of {movie.name} </h1>
-    //</div>
-  //);
-}
-
 
 
 export default App;  // default export

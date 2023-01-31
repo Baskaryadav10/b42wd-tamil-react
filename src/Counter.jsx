@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -11,6 +11,11 @@ export function Counter() {
   //let like = 10;
   const [like, setLike] = useState(0);
   const [dislike, setDislike] = useState(0);
+
+  //useEffect(() => {
+    //console.log("Like value is updated:", like);
+  //}, [like, dislike]);
+
   return (
     <div>
       <IconButton 

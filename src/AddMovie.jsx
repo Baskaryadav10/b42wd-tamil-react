@@ -66,7 +66,7 @@ export function AddMovie({ movieList, setMovieList }) {
         Add Movie
       </Button>
       {/*<p>
-                  {name} - {poster} - {rating} - {summary}
-                </p> */}
+            {name} - {poster} - {rating} - {summary}
+          </p> */}
     </div>);
 }
