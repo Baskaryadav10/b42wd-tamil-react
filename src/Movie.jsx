@@ -12,7 +12,7 @@ import CardMedia from '@mui/material/CardMedia';
 import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from "react-router-dom";
 
-export function Movie({ movie,id }) {
+export function Movie({ movie, id, deleteButton}) {
   // Conditional Styling | ? : → ternary operator
   const styles = {
     color: movie.rating > 8.5 ? "green" : "crimson",
@@ -74,7 +74,7 @@ const navigate = useNavigate();
       {/*<p className={show ? 'green' : 'red'}>{movie.summary}</p> */}
       
       <CardActions>
-        <Counter />
+        <Counter />  {deleteButton}
       </CardActions>
       
     </Card>);
